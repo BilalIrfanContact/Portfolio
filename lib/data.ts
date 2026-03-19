@@ -85,12 +85,9 @@ export const skills: SkillGroup[] = [
     category: "AI & Machine Learning",
     icon: "bot",
     items: [
-      "LangChain",
-      "LlamaIndex",
       "OpenAI API",
       "RAG Pipelines",
       "ChromaDB",
-      "Whisper",
       "Agentic AI",
     ],
   },
@@ -102,12 +99,12 @@ export const skills: SkillGroup[] = [
   {
     category: "Frontend",
     icon: "monitor",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Jinja2"],
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Jinja2"],
   },
   {
     category: "Tools & Platforms",
     icon: "wrench",
-    items: ["Git", "GitHub", "Docker", "Vercel", "Postman", "Linux"],
+    items: ["Git", "GitHub", "Vercel", "Postman", "Linux"],
   },
 ];
 
