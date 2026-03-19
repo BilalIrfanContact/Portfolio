@@ -2,25 +2,39 @@
 
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { Linkedin, Mail } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { FormEvent, ReactNode, useState } from "react";
+import RedditIcon from "@/components/RedditIcon";
 import SectionReveal from "@/components/SectionReveal";
 import { owner } from "@/lib/data";
 
-type FormState = {
-  name: string;
-  email: string;
-  message: string;
+type ContactLinkProps = {
+  href: string;
+  label: string;
+  icon: ReactNode;
+  external?: boolean;
 };
 
-const initialForm: FormState = {
-  name: "",
-  email: "",
-  message: "",
-};
+const contactLinkClasses =
+  "flex items-center gap-3 rounded-xl border border-white/10 bg-card/50 px-4 py-3 text-foreground/85 transition-colors hover:border-accent/35 hover:text-accent";
+
+const fieldClasses =
+  "w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 py-2.5 text-slate-200 outline-none transition-colors placeholder:text-slate-400/80 focus:border-accent/60 focus:bg-[#0d1327]";
+
+function ContactLink({ href, label, icon, external = false }: ContactLinkProps) {
+  return (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      className={contactLinkClasses}
+    >
+      {icon}
+      <span>{label}</span>
+    </a>
+  );
+}
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>(initialForm);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
@@ -28,6 +42,16 @@ export default function Contact() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (!name || !email || !message) {
+      setError("Please fill in all fields before sending.");
+      return;
+    }
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
@@ -44,16 +68,19 @@ export default function Contact() {
         serviceId,
         templateId,
         {
-          from_name: form.name,
-          from_email: form.email,
-          message: form.message,
+          name,
+          from_name: name,
+          email,
+          from_email: email,
+          reply_to: email,
+          message,
           to_name: owner.name,
         },
         { publicKey },
       );
 
       setSent(true);
-      setForm(initialForm);
+      event.currentTarget.reset();
     } catch {
       setError("Something went wrong while sending. Please try again in a moment.");
     } finally {
@@ -74,23 +101,12 @@ export default function Contact() {
               from you.
             </p>
 
-            <div className="mt-7 space-y-4">
-              <a
-                href={`mailto:${owner.email}`}
-                className="inline-flex items-center gap-3 text-foreground/85 transition-colors hover:text-accent"
-              >
-                <Mail size={18} />
-                <span>{owner.email}</span>
-              </a>
-              <a
-                href={owner.linkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-3 text-foreground/85 transition-colors hover:text-accent"
-              >
-                <Linkedin size={18} />
-                <span>LinkedIn</span>
-              </a>
+            <div className="mt-7 grid gap-3">
+              <ContactLink href={`mailto:${owner.email}`} label={owner.email} icon={<Mail size={18} />} />
+              <ContactLink href={owner.linkedIn} label="LinkedIn" icon={<Linkedin size={18} />} external />
+              <ContactLink href={owner.github} label="GitHub" icon={<Github size={18} />} external />
+              <ContactLink href={owner.reddit} label="Reddit" icon={<RedditIcon size={18} />} external />
+              <ContactLink href={owner.x} label="X" icon={<Twitter size={18} />} external />
             </div>
           </div>
 
@@ -109,11 +125,10 @@ export default function Contact() {
                 <label className="block">
                   <span className="mb-2 block text-sm text-foreground/80">Name</span>
                   <input
+                    name="name"
                     type="text"
                     required
-                    value={form.name}
-                    onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-                    className="w-full rounded-xl border border-white/10 bg-background/70 px-4 py-2.5 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent/45"
+                    className={fieldClasses}
                     placeholder="Your name"
                   />
                 </label>
@@ -121,11 +136,10 @@ export default function Contact() {
                 <label className="block">
                   <span className="mb-2 block text-sm text-foreground/80">Email</span>
                   <input
+                    name="email"
                     type="email"
                     required
-                    value={form.email}
-                    onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-                    className="w-full rounded-xl border border-white/10 bg-background/70 px-4 py-2.5 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent/45"
+                    className={fieldClasses}
                     placeholder="you@example.com"
                   />
                 </label>
@@ -133,11 +147,10 @@ export default function Contact() {
                 <label className="block">
                   <span className="mb-2 block text-sm text-foreground/80">Message</span>
                   <textarea
+                    name="message"
                     rows={4}
                     required
-                    value={form.message}
-                    onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-                    className="w-full rounded-xl border border-white/10 bg-background/70 px-4 py-2.5 text-foreground outline-none transition-colors placeholder:text-muted/60 focus:border-accent/45"
+                    className={fieldClasses}
                     placeholder="Tell me about your project"
                   />
                 </label>

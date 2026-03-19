@@ -31,6 +31,8 @@ export const owner = {
   email: "bilalirfancontact@gmail.com",
   linkedIn: "https://www.linkedin.com/in/bilalirfancontact/",
   github: "https://github.com/BilalIrfanContact",
+  reddit: "https://www.reddit.com/user/biloo0asks/",
+  x: "https://x.com/biloo0_2",
   resumePath: "/resume.pdf",
 };
 
@@ -64,6 +66,17 @@ export const projects: Project[] = [
     tech: ["FastAPI", "pandas", "OpenAI", "Next.js", "Tailwind CSS"],
     github: "https://github.com/BilalIrfanContact/AskMyData",
     demo: "https://github.com/BilalIrfanContact/AskMyData",
+  },
+  {
+    id: 3,
+    category: "Machine Learning",
+    name: "Podcast Listening Time Prediction",
+    tagline: "Predicting podcast listening time with ML.",
+    description:
+      "A machine learning project focused on estimating listener watch or listening duration for podcast content using structured input features.",
+    tech: ["Python", "Machine Learning", "Pandas", "scikit-learn"],
+    github: "https://github.com/BilalIrfanContact/Podcast-Listening-Time-Prediction",
+    demo: "https://github.com/BilalIrfanContact/Podcast-Listening-Time-Prediction",
   },
 ];
 

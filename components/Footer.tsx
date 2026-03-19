@@ -1,6 +1,7 @@
 "use client";
 
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
+import RedditIcon from "@/components/RedditIcon";
 import { owner } from "@/lib/data";
 
 export default function Footer() {
@@ -26,6 +27,24 @@ export default function Footer() {
             className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
           >
             <Linkedin size={16} />
+          </a>
+          <a
+            href={owner.reddit}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Reddit"
+            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+          >
+            <RedditIcon size={16} />
+          </a>
+          <a
+            href={owner.x}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X"
+            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+          >
+            <Twitter size={16} />
           </a>
         </div>
       </div>

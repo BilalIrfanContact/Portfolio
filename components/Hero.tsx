@@ -34,7 +34,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-5xl leading-[0.95] text-foreground sm:text-6xl md:text-7xl lg:text-[clamp(3rem,7vw,5rem)]"
+            className="font-display text-5xl leading-[1.15] text-foreground sm:text-6xl md:text-7xl lg:text-[clamp(3rem,7vw,5rem)]"
             initial="hidden"
             animate="visible"
             custom={0.1}
@@ -43,7 +43,7 @@ export default function Hero() {
             I build AI-powered
           </motion.h1>
           <motion.h1
-            className="mt-1 font-display text-5xl leading-[0.95] text-foreground sm:text-6xl md:text-7xl lg:text-[clamp(3rem,7vw,5rem)]"
+            className="mt-1 font-display text-5xl leading-[1.15] text-foreground sm:text-6xl md:text-7xl lg:text-[clamp(3rem,7vw,5rem)]"
             initial="hidden"
             animate="visible"
             custom={0.18}
