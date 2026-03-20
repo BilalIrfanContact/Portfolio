@@ -151,7 +151,7 @@ export default function Contact() {
                     rows={4}
                     required
                     className={fieldClasses}
-                    placeholder="Tell me about your project"
+                    placeholder="Share your thoughts"
                   />
                 </label>
 
