@@ -19,7 +19,16 @@ export type ExperienceItem = {
   role: string;
   company: string;
   period: string;
-  description: string;
+  description?: string;
+  bullets?: string[];
+};
+
+export type CertificationItem = {
+  title: string;
+  issuer: string;
+  issued: string;
+  credentialUrl: string;
+  learnings: string[];
 };
 
 export const owner = {
@@ -27,7 +36,7 @@ export const owner = {
   role: "Full-Stack Developer & AI Engineer",
   tagline: "I build AI-powered web applications.",
   subTagline:
-    "Specializing in RAG pipelines, AI integrations, and full-stack web development.",
+    "Full-stack developer with a focus on AI engineering, building end-to-end applications that integrate LLMs, RAG pipelines, and agentic AI into real workflows.",
   email: "bilalirfancontact@gmail.com",
   linkedIn: "https://www.linkedin.com/in/bilalirfancontact/",
   github: "https://github.com/BilalIrfanContact",
@@ -86,7 +95,10 @@ export const skills: SkillGroup[] = [
     icon: "bot",
     items: [
       "OpenAI API",
+      "Large Language Models (LLMs)",
+      "LangChain",
       "RAG Pipelines",
+      "Retrieval-Augmented Generation (RAG)",
       "ChromaDB",
       "Agentic AI",
     ],
@@ -113,15 +125,22 @@ export const experience: ExperienceItem[] = [
     role: "Junior Software Developer",
     company: "KNYSYS",
     period: "February 2025 - Present",
-    description:
-      "Designing REST APIs, working with PostgreSQL and MongoDB, and building full-stack applications with Quart, Jinja2, and Odoo in a production environment.",
+    bullets: [
+      "Designed RESTful APIs, supporting secure authentication and reliable data exchange between backend services and frontend interfaces.",
+      "Managed and worked with databases like PostgreSQL and MongoDB, helping maintain data consistency and perform CRUD operations efficiently.",
+      "Worked on developing full-stack web applications using Python (Quart) for backend services and Jinja2 for dynamic frontend rendering, integrating data from MongoDB.",
+      "Worked on modular business applications using the Odoo ERP framework, applying Python and XML-based templating to develop maintainable features.",
+    ],
   },
   {
     role: "Intern Software Developer",
     company: "KNYSYS",
     period: "November 2024 - January 2025",
-    description:
-      "Contributed to team workflows with Git, worked in Linux-based development environments, and learned MVC architecture through guided backend, database, and frontend tasks.",
+    bullets: [
+      "Assisted in team-based development using Git, gaining exposure to branching strategies and version control workflows used in collaborative projects.",
+      "Learned to work in a Linux-based development environment, familiarizing myself with common shell commands, file system navigation, and basic terminal tools.",
+      "Gained hands-on understanding of MVC architecture by working on backend logic, database interactions, and frontend templates under guidance.",
+    ],
   },
   {
     role: "Bachelor of Science in Software Engineering",
@@ -129,5 +148,37 @@ export const experience: ExperienceItem[] = [
     period: "March 2021 - February 2025",
     description:
       "Completed undergraduate studies focused on software engineering fundamentals, full-stack development, and AI-oriented problem solving.",
+  },
+];
+
+export const certifications: CertificationItem[] = [
+  {
+    title: "Machine Learning A-Z: AI, Python & R",
+    issuer: "Udemy",
+    issued: "Issued March 2026",
+    credentialUrl: "https://www.udemy.com/certificate/UC-8f80493e-e90c-4146-993c-0a3b51cee06f/",
+    learnings: [
+      "Gained skills in data preprocessing.",
+      "Applied regression techniques.",
+      "Applied classification methods.",
+      "Explored clustering approaches.",
+      "Studied reinforcement learning.",
+      "Worked with natural language processing (NLP).",
+      "Practiced model selection and boosting.",
+    ],
+  },
+  {
+    title: "Introduction to Career Skills in Data Analytics",
+    issuer: "LinkedIn Learning",
+    issued: "Issued July 2024",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/6206c4e1faf9280e9e377c11fdcff60c4c82cfd29b7c21df08b5280551d23ea8",
+    learnings: [
+      "Understand the role and responsibilities of a data analyst.",
+      "Learn how data supports business decisions.",
+      "Prepare and transform data using Excel, SQL, and Power BI.",
+      "Basics of data modeling and relational databases.",
+      "Create visualizations, dashboards, and reports.",
+    ],
   },
 ];

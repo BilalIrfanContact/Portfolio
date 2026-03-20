@@ -19,7 +19,17 @@ export default function Experience() {
               <h3 className="font-display text-2xl text-foreground">{item.role}</h3>
               <p className="mt-1 text-sm text-accent">{item.company}</p>
               <p className="mt-1 text-xs uppercase tracking-[0.1em] text-muted">{item.period}</p>
-              <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-muted">{item.description}</p>
+              {item.bullets && item.bullets.length > 0 ? (
+                <ul className="mt-3 max-w-[68ch] list-disc space-y-1 pl-5 text-sm leading-relaxed text-muted">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              ) : (
+                item.description && (
+                  <p className="mt-3 max-w-[68ch] text-sm leading-relaxed text-muted">{item.description}</p>
+                )
+              )}
             </article>
           ))}
         </div>
