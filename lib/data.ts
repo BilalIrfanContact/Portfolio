@@ -1,5 +1,6 @@
 export type Project = {
   id: number;
+  slug: string;
   category: string;
   name: string;
   tagline: string;
@@ -58,6 +59,7 @@ export const navLinks = [
 export const projects: Project[] = [
   {
     id: 1,
+    slug: "askmydoc",
     category: "AI / RAG",
     name: "AskMyDoc",
     tagline: "Chat with documents using a RAG pipeline.",
@@ -69,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    slug: "askmydata",
     category: "Agentic AI",
     name: "AskMyData",
     tagline: "Talk to your data, not about it.",
@@ -80,6 +83,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
+    slug: "podcast-listening-time-prediction",
     category: "Machine Learning",
     name: "Podcast Listening Time Prediction",
     tagline: "Predicting podcast listening time with ML.",
