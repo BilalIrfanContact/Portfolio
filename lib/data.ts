@@ -27,6 +27,7 @@ export type CertificationItem = {
   title: string;
   issuer: string;
   issued: string;
+  credentialId?: string;
   credentialUrl: string;
   learnings: string[];
 };
@@ -122,14 +123,16 @@ export const skills: SkillGroup[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Junior Software Developer",
+    role: "Software Developer",
     company: "KNYSYS",
     period: "February 2025 - Present",
     bullets: [
-      "Designed RESTful APIs, supporting secure authentication and reliable data exchange between backend services and frontend interfaces.",
-      "Managed and worked with databases like PostgreSQL and MongoDB, helping maintain data consistency and perform CRUD operations efficiently.",
-      "Worked on developing full-stack web applications using Python (Quart) for backend services and Jinja2 for dynamic frontend rendering, integrating data from MongoDB.",
-      "Worked on modular business applications using the Odoo ERP framework, applying Python and XML-based templating to develop maintainable features.",
+      "Designed and maintained RESTful APIs supporting secure authentication and reliable data exchange between backend services and frontend interfaces.",
+      "Built full-stack web applications using Python (Quart) for backend services and Jinja2 for dynamic frontend rendering, integrating data from MongoDB.",
+      "Managed PostgreSQL and MongoDB databases, handling CRUD operations and maintaining data consistency.",
+      "Engaged directly with clients across logistics, waste management, finance, and customs industries gathering requirements, understanding pain points, and proposing technical solutions.",
+      "Demonstrated developed features to clients, translating technical implementation into clear non-technical walkthroughs.",
+      "Coordinated with and occasionally led small team sub-groups during development phases, managing task distribution and delivery.",
     ],
   },
   {
@@ -152,6 +155,22 @@ export const experience: ExperienceItem[] = [
 ];
 
 export const certifications: CertificationItem[] = [
+  {
+    title: "Claude Code in Action",
+    issuer: "Anthropic",
+    issued: "Issued March 2026",
+    credentialId: "ccqmbxa5poy8",
+    credentialUrl: "https://verify.skilljar.com/c/ccqmbxa5poy8",
+    learnings: [
+      "Gained hands-on experience using AI coding agents in real development workflows.",
+      "Learned how to smartly manage context, memory, and token limits to keep the agent focused and effective.",
+      "Explored MCP (Model Context Protocol) integrations to connect Claude Code with external tools like Figma and Playwright.",
+      "Understood the tool system Claude Code uses to read files, run commands, and navigate codebases autonomously.",
+      "Learned to use CLAUDE.md for persistent project memory storing conventions, import paths, and coding rules across sessions.",
+      "Orchestrated multiple subagents to work on different parts of a codebase simultaneously for parallel development.",
+      "Set up hooks to automate workflows and add security controls around tool usage.",
+    ],
+  },
   {
     title: "Machine Learning A-Z: AI, Python & R",
     issuer: "Udemy",

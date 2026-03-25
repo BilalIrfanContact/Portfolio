@@ -10,9 +10,9 @@ export default function Certifications() {
     <SectionReveal className="px-6 py-24 md:px-8 md:py-28">
       <div id="certifications" className="mx-auto w-full max-w-6xl scroll-mt-24">
         <p className="text-xs uppercase tracking-[0.22em] text-accent">CERTIFICATIONS</p>
-        <h2 className="mt-3 font-display text-4xl text-foreground md:text-5xl">Verified learning</h2>
+        <h2 className="mt-3 font-display text-4xl text-foreground md:text-5xl">Verified Learning</h2>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid items-start gap-6 md:grid-cols-2">
           {certifications.map((cert) => (
             <motion.article
               key={`${cert.title}-${cert.issuer}`}
