@@ -31,26 +31,37 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+    const updateActiveSection = () => {
+      const probe = window.innerHeight * 0.35;
+
+      setActiveSection((prev) => {
+        let current = prev;
+        let foundAny = false;
+
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          foundAny = true;
+
+          if (el.getBoundingClientRect().top <= probe) {
+            current = id;
+          } else {
+            break;
           }
-        });
-      },
-      {
-        rootMargin: "-40% 0px -45% 0px",
-        threshold: [0.2, 0.5],
-      },
-    );
+        }
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+        return foundAny ? current : prev;
+      });
+    };
 
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   useEffect(() => {
@@ -87,6 +98,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={() => setActiveSection(link.href.replace("#", ""))}
                   className={`group relative text-sm transition-colors ${
                     isActive ? "text-accent" : "text-foreground/80 hover:text-foreground"
                   }`}
