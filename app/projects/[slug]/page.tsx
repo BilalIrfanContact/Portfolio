@@ -176,6 +176,67 @@ const askMyDataStory = [
   },
 ];
 
+const podcastListeningPredictionStory = [
+  {
+    groupTitle: "System Overview",
+    sections: [
+      {
+        title: "How It Works — End to End",
+        content: [
+          "The project has two parts, a training workflow in a Jupyter notebook and a Flask web app for live predictions. The notebook is used for exploration and model experimentation, while the app provides an input form where users submit episode metadata and get an estimated listening time in minutes.",
+          "At app startup, the backend checks for a saved model file. If it exists, the model is loaded. If not, the app reads the training dataset, applies preprocessing, trains a Linear Regression model, and saves it as model.pkl for reuse. User input is then transformed with the same preprocessing rules and passed into the model for inference.",
+        ],
+      },
+    ],
+  },
+  {
+    groupTitle: "Model & Data",
+    sections: [
+      {
+        title: "Feature Engineering and Preprocessing",
+        content: [
+          "The training pipeline drops non predictive identifiers such as id and removes text fields like podcast and episode titles from the feature set. Missing values in Number_of_Ads, Episode_Length_minutes, and Guest_Popularity_percentage are imputed with column means to keep inference stable.",
+          "Categorical fields are encoded in two ways. Publication_Day and Episode_Sentiment are mapped to numeric values, while Genre and Publication_Time are one hot encoded with drop_first enabled. During prediction, the app aligns incoming features to the exact training column order and inserts zeroes for missing dummy columns so model input shape stays consistent.",
+        ],
+      },
+      {
+        title: "Model Choice and Target",
+        content: [
+          "The model is a scikit learn LinearRegression trained to predict Listening_Time_minutes. The choice keeps the project lightweight and interpretable for a first end to end machine learning deployment. It is fast to train on the available dataset and easy to integrate into a simple Flask inference route.",
+        ],
+      },
+    ],
+  },
+  {
+    groupTitle: "Application Design",
+    sections: [
+      {
+        title: "Flask Prediction Flow",
+        content: [
+          "The interface posts form data to /predict. The backend parses numeric fields, applies the same day and sentiment mappings used in training, one hot encodes categorical inputs, aligns columns with the saved training schema, and runs model.predict. The final output is rendered back into the same page as Predicted Listening Time with a formatted value.",
+        ],
+      },
+      {
+        title: "Frontend UX",
+        content: [
+          "The frontend is a single Flask template with a structured form for all model inputs, inline result rendering, and a light dark theme toggle stored in localStorage. The UI remains intentionally simple to emphasize model behavior and quick experimentation rather than dashboard level complexity.",
+        ],
+      },
+    ],
+  },
+  {
+    groupTitle: "Reflection",
+    sections: [
+      {
+        title: "What I Would Improve Next",
+        content: [
+          "The next iteration would add explicit evaluation metrics such as RMSE and R² in the app output, compare stronger non linear models, and package preprocessing plus model steps in a single reusable pipeline object to reduce training inference drift risk. For production use, file based model management and input validation would also be hardened further.",
+        ],
+      },
+    ],
+  },
+];
+
 type ProjectShowcasePageProps = {
   params: {
     slug: string;
@@ -189,8 +250,13 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
     notFound();
   }
 
-  const showcaseStory =
-    project.slug === "askmydoc" ? askMyDocStory : project.slug === "askmydata" ? askMyDataStory : null;
+  const showcaseStoryBySlug: Record<string, typeof askMyDocStory> = {
+    askmydoc: askMyDocStory,
+    askmydata: askMyDataStory,
+    "podcast-listening-time-prediction": podcastListeningPredictionStory,
+  };
+
+  const showcaseStory = showcaseStoryBySlug[project.slug] ?? null;
 
   return (
     <main className="px-6 pb-20 pt-28 md:px-8">
