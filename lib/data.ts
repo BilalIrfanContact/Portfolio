@@ -44,7 +44,7 @@ export const owner = {
   github: "https://github.com/BilalIrfanContact",
   reddit: "https://www.reddit.com/user/biloo0asks/",
   x: "https://x.com/biloo0_2",
-  resumePath: "/resume.pdf",
+  resumePath: "/BilalIrfan_Resume.pdf",
 };
 
 export const navLinks = [
