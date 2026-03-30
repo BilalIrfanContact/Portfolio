@@ -102,7 +102,7 @@ const askMyDataStory = [
     groupTitle: "AI & Architecture",
     sections: [
       {
-        title: "The Query Engine — Code Generation over RAG or SQL",
+        title: "The Query Engine Code Generation over RAG or SQL",
         content: [
           "AskMyData query engine is built around LLM code generation combined with sandboxed runtime execution. Rather than retrieving pre indexed passages or translating questions into SQL, the system asks GPT to write pandas and matplotlib Python code tailored to the user question, then executes that code live against the actual dataset.",
           "This approach was chosen deliberately over alternatives. RAG works well for unstructured documents but is weak at numeric computation and chart generation because it retrieves text rather than computing. SQL agents are strong for relational querying but fall short on custom Python transformations and arbitrary visualization without heavy extension. Code generation is the most flexible pattern for open ended analytics and visualization questions over CSV data, and it produces real computed answers rather than approximations from retrieved context.",
@@ -229,16 +229,6 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
             >
               git clone
             </a>
-            {project.demo ? (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noreferrer"
-                className="terminal-btn px-4 py-2 text-sm text-foreground/90"
-              >
-                npm run demo
-              </a>
-            ) : null}
           </div>
         </div>
 
