@@ -6,7 +6,7 @@ import { owner } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 py-6 md:px-8">
+    <footer className="border-t border-border px-6 py-6 md:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>(c) 2026 Bilal Irfan. All rights reserved.</p>
         <div className="flex items-center gap-3">
@@ -15,7 +15,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+            className="terminal-btn p-2 text-foreground/75"
           >
             <Github size={16} />
           </a>
@@ -24,7 +24,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+            className="terminal-btn p-2 text-foreground/75"
           >
             <Linkedin size={16} />
           </a>
@@ -33,7 +33,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="Reddit"
-            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+            className="terminal-btn p-2 text-foreground/75"
           >
             <RedditIcon size={16} />
           </a>
@@ -42,7 +42,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="X"
-            className="rounded-md border border-white/10 p-2 text-foreground/75 transition-colors hover:border-accent/45 hover:text-accent"
+            className="terminal-btn p-2 text-foreground/75"
           >
             <Twitter size={16} />
           </a>

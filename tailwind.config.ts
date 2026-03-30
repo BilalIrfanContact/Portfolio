@@ -21,7 +21,7 @@ const config: Config = {
         body: ["var(--font-body)", "sans-serif"],
       },
       boxShadow: {
-        accent: "0 0 0 1px rgba(0, 212, 255, 0.35), 0 0 24px rgba(0, 212, 255, 0.08)",
+        accent: "0 0 0 1px rgba(77, 255, 114, 0.45), 0 0 24px rgba(77, 255, 114, 0.14)",
       },
       keyframes: {
         shimmer: {

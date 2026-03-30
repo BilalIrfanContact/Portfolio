@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #080810;
-  --foreground: #f0f0f5;
-  --accent: #00d4ff;
-  --muted: #64748b;
-  --border: rgba(255, 255, 255, 0.07);
-  --card-bg: #0f0f1a;
-  --font-display: system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-body: system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --background: #050705;
+  --foreground: #d2ffd2;
+  --accent: #4dff72;
+  --muted: #82b982;
+  --border: rgba(77, 255, 114, 0.28);
+  --card-bg: #0a130a;
+  --font-display: "IBM Plex Mono", "JetBrains Mono", "Fira Code", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-body: "IBM Plex Mono", "JetBrains Mono", "Fira Code", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 * {
@@ -25,22 +25,73 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--background);
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
-  background-size: 3px 3px;
+  background-image: radial-gradient(circle at 1px 1px, rgba(77, 255, 114, 0.08) 1px, transparent 0);
+  background-size: 4px 4px;
   color: var(--foreground);
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 0 6px rgba(77, 255, 114, 0.12);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(77, 255, 114, 0.03) 0px,
+    rgba(77, 255, 114, 0.03) 1px,
+    transparent 1px,
+    transparent 4px
+  );
 }
 
 .font-display {
   line-height: 1.12;
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
+}
+
+main,
+header,
+footer,
+section,
+article {
+  position: relative;
+  z-index: 2;
+}
+
+.terminal-panel {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(10, 19, 10, 0.96) 0%, rgba(7, 13, 7, 0.96) 100%);
+  box-shadow: inset 0 0 0 1px rgba(77, 255, 114, 0.08), 0 0 24px rgba(77, 255, 114, 0.08);
+}
+
+.terminal-chip {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: rgba(77, 255, 114, 0.06);
+}
+
+.terminal-btn {
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  transition: all 180ms ease;
+}
+
+.terminal-btn:hover {
+  background: rgba(77, 255, 114, 0.12);
+  color: var(--foreground);
 }
 
 a {
@@ -49,7 +100,7 @@ a {
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.22);
+  background: rgba(77, 255, 114, 0.28);
   color: var(--foreground);
 }
 
@@ -58,17 +109,17 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a13;
+  background: #060b06;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  border: 2px solid #0a0a13;
-  background: rgba(100, 116, 139, 0.6);
+  border-radius: 0;
+  border: 1px solid #060b06;
+  background: rgba(77, 255, 114, 0.45);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 212, 255, 0.5);
+  background: rgba(77, 255, 114, 0.7);
 }
 
 input:-webkit-autofill,
@@ -77,8 +128,8 @@ input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus {
-  -webkit-text-fill-color: #e2e8f0;
-  caret-color: #e2e8f0;
-  box-shadow: 0 0 0 1000px #0b1020 inset;
+  -webkit-text-fill-color: var(--foreground);
+  caret-color: var(--foreground);
+  box-shadow: 0 0 0 1000px #071007 inset;
   transition: background-color 9999s ease-in-out 0s;
 }

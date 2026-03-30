@@ -19,7 +19,7 @@ export default function Hero() {
       id="about"
       className="relative flex min-h-screen scroll-mt-20 items-center overflow-hidden px-6 pb-16 pt-28 md:px-8"
     >
-      <div className="pointer-events-none absolute left-[12%] top-[22%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.10)_0%,rgba(0,212,255,0.04)_40%,rgba(0,212,255,0.00)_75%)] blur-2xl" />
+      <div className="pointer-events-none absolute left-[12%] top-[22%] h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(77,255,114,0.18)_0%,rgba(77,255,114,0.08)_40%,rgba(77,255,114,0)_75%)] blur-2xl" />
 
       <div className="relative mx-auto w-full max-w-6xl">
         <div className="max-w-3xl">
@@ -40,16 +40,7 @@ export default function Hero() {
             custom={0.1}
             variants={lineVariants}
           >
-            I build AI-powered
-          </motion.h1>
-          <motion.h1
-            className="mt-1 font-display text-5xl leading-[1.15] text-foreground sm:text-6xl md:text-7xl lg:text-[clamp(3rem,7vw,5rem)]"
-            initial="hidden"
-            animate="visible"
-            custom={0.18}
-            variants={lineVariants}
-          >
-            web applications.
+            $ building AI-powered web applications
           </motion.h1>
 
           <motion.p
@@ -71,19 +62,17 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-accent px-8 py-3 text-sm font-semibold text-background transition-transform duration-200 hover:-translate-y-0.5"
+              className="terminal-btn group relative inline-flex items-center justify-center overflow-hidden px-8 py-3 text-sm font-semibold"
             >
-              <span className="relative z-10">View Projects</span>
-              <span className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.28),transparent)] transition-transform duration-500 group-hover:translate-x-[120%]" />
+              <span className="relative z-10">cd ./projects</span>
             </a>
 
             <a
               href={owner.resumePath}
               download
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-accent px-8 py-3 text-sm font-semibold text-accent transition-all duration-200 hover:bg-accent hover:text-background"
+              className="terminal-btn group relative inline-flex items-center justify-center overflow-hidden px-8 py-3 text-sm font-semibold"
             >
-              <span className="relative z-10">Download Resume</span>
-              <span className="pointer-events-none absolute inset-0 -translate-x-[130%] bg-[linear-gradient(110deg,transparent,rgba(0,212,255,0.35),transparent)] transition-transform duration-500 group-hover:translate-x-[130%]" />
+              <span className="relative z-10">cat resume.pdf</span>
             </a>
           </motion.div>
         </div>

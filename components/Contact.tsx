@@ -16,10 +16,10 @@ type ContactLinkProps = {
 };
 
 const contactLinkClasses =
-  "flex items-center gap-3 rounded-xl border border-white/10 bg-card/50 px-4 py-3 text-foreground/85 transition-colors hover:border-accent/35 hover:text-accent";
+  "terminal-panel flex items-center gap-3 px-4 py-3 text-foreground/85 transition-colors hover:border-accent/35 hover:text-accent";
 
 const fieldClasses =
-  "w-full rounded-xl border border-white/10 bg-[#0b1020] px-4 py-2.5 text-slate-200 outline-none transition-colors placeholder:text-slate-400/80 focus:border-accent/60 focus:bg-[#0d1327]";
+  "w-full border border-border bg-[#071007] px-4 py-2.5 text-foreground outline-none transition-colors placeholder:text-muted/80 focus:border-accent/80 focus:bg-[#091409]";
 
 function ContactLink({ href, label, icon, external = false }: ContactLinkProps) {
   return (
@@ -91,7 +91,7 @@ export default function Contact() {
   return (
     <SectionReveal className="px-6 py-24 md:px-8 md:py-28">
       <div id="contact" className="mx-auto w-full max-w-6xl scroll-mt-24">
-        <p className="text-xs uppercase tracking-[0.22em] text-accent">CONTACT</p>
+        <p className="text-xs tracking-[0.12em] text-accent">$ ./contact --open</p>
         <h2 className="mt-3 font-display text-4xl text-foreground md:text-5xl">Let&apos;s work together</h2>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -110,12 +110,12 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="terminal-panel p-6">
             {sent ? (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-xl border border-accent/40 bg-accent/5 p-5"
+                className="terminal-panel border-accent/40 bg-accent/5 p-5"
               >
                 <h3 className="font-display text-2xl text-foreground">Message sent</h3>
                 <p className="mt-2 text-sm text-muted">Thanks for reaching out. I&apos;ll get back to you shortly.</p>
@@ -160,10 +160,9 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-full bg-accent px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="terminal-btn inline-flex w-full items-center justify-center px-6 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <span className="relative z-10">{loading ? "Sending..." : "Send Message"}</span>
-                  <span className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.28),transparent)] transition-transform duration-500 group-hover:translate-x-[120%]" />
+                  <span className="relative z-10">{loading ? "sending..." : "./send-message"}</span>
                 </button>
               </form>
             )}

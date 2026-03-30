@@ -176,67 +176,6 @@ const askMyDataStory = [
   },
 ];
 
-const podcastListeningPredictionStory = [
-  {
-    groupTitle: "System Overview",
-    sections: [
-      {
-        title: "How It Works — End to End",
-        content: [
-          "The project has two parts, a training workflow in a Jupyter notebook and a Flask web app for live predictions. The notebook is used for exploration and model experimentation, while the app provides an input form where users submit episode metadata and get an estimated listening time in minutes.",
-          "At app startup, the backend checks for a saved model file. If it exists, the model is loaded. If not, the app reads the training dataset, applies preprocessing, trains a Linear Regression model, and saves it as model.pkl for reuse. User input is then transformed with the same preprocessing rules and passed into the model for inference.",
-        ],
-      },
-    ],
-  },
-  {
-    groupTitle: "Model & Data",
-    sections: [
-      {
-        title: "Feature Engineering and Preprocessing",
-        content: [
-          "The training pipeline drops non predictive identifiers such as id and removes text fields like podcast and episode titles from the feature set. Missing values in Number_of_Ads, Episode_Length_minutes, and Guest_Popularity_percentage are imputed with column means to keep inference stable.",
-          "Categorical fields are encoded in two ways. Publication_Day and Episode_Sentiment are mapped to numeric values, while Genre and Publication_Time are one hot encoded with drop_first enabled. During prediction, the app aligns incoming features to the exact training column order and inserts zeroes for missing dummy columns so model input shape stays consistent.",
-        ],
-      },
-      {
-        title: "Model Choice and Target",
-        content: [
-          "The model is a scikit learn LinearRegression trained to predict Listening_Time_minutes. The choice keeps the project lightweight and interpretable for a first end to end machine learning deployment. It is fast to train on the available dataset and easy to integrate into a simple Flask inference route.",
-        ],
-      },
-    ],
-  },
-  {
-    groupTitle: "Application Design",
-    sections: [
-      {
-        title: "Flask Prediction Flow",
-        content: [
-          "The interface posts form data to /predict. The backend parses numeric fields, applies the same day and sentiment mappings used in training, one hot encodes categorical inputs, aligns columns with the saved training schema, and runs model.predict. The final output is rendered back into the same page as Predicted Listening Time with a formatted value.",
-        ],
-      },
-      {
-        title: "Frontend UX",
-        content: [
-          "The frontend is a single Flask template with a structured form for all model inputs, inline result rendering, and a light dark theme toggle stored in localStorage. The UI remains intentionally simple to emphasize model behavior and quick experimentation rather than dashboard level complexity.",
-        ],
-      },
-    ],
-  },
-  {
-    groupTitle: "Reflection",
-    sections: [
-      {
-        title: "What I Would Improve Next",
-        content: [
-          "The next iteration would add explicit evaluation metrics such as RMSE and R² in the app output, compare stronger non linear models, and package preprocessing plus model steps in a single reusable pipeline object to reduce training inference drift risk. For production use, file based model management and input validation would also be hardened further.",
-        ],
-      },
-    ],
-  },
-];
-
 type ProjectShowcasePageProps = {
   params: {
     slug: string;
@@ -253,7 +192,6 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
   const showcaseStoryBySlug: Record<string, typeof askMyDocStory> = {
     askmydoc: askMyDocStory,
     askmydata: askMyDataStory,
-    "podcast-listening-time-prediction": podcastListeningPredictionStory,
   };
 
   const showcaseStory = showcaseStoryBySlug[project.slug] ?? null;
@@ -263,12 +201,12 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
       <div className="mx-auto w-full max-w-4xl">
         <Link
           href="/#projects"
-          className="inline-flex items-center rounded-full border border-accent px-4 py-2 text-sm text-accent transition-colors hover:bg-accent hover:text-background"
+          className="terminal-btn inline-flex items-center px-4 py-2 text-sm"
         >
-          Back to projects
+          cd ../projects
         </Link>
 
-        <div className="mt-8 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <div className="terminal-panel mt-8 p-6 md:p-8">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">{project.category}</p>
           <h1 className="mt-3 font-display text-4xl text-foreground md:text-5xl">{project.name}</h1>
           <p className="mt-3 text-lg text-foreground/90">{project.tagline}</p>
@@ -276,7 +214,7 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
 
           <div className="mt-5 flex flex-wrap gap-2">
             {project.tech.map((item) => (
-              <span key={item} className="rounded-full border border-accent/35 px-3 py-1 text-xs text-accent">
+              <span key={item} className="terminal-chip px-3 py-1 text-xs text-accent">
                 {item}
               </span>
             ))}
@@ -287,18 +225,18 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-lg border border-white/15 px-4 py-2 text-sm text-foreground/90 transition-colors hover:border-accent/50 hover:text-accent"
+              className="terminal-btn px-4 py-2 text-sm text-foreground/90"
             >
-              GitHub
+              git clone
             </a>
             {project.demo ? (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-lg border border-white/15 px-4 py-2 text-sm text-foreground/90 transition-colors hover:border-accent/50 hover:text-accent"
+                className="terminal-btn px-4 py-2 text-sm text-foreground/90"
               >
-                Live demo
+                npm run demo
               </a>
             ) : null}
           </div>
@@ -307,7 +245,7 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
         {showcaseStory ? (
           <div className="mt-8 space-y-6">
             {showcaseStory.map((group) => (
-              <section key={group.groupTitle} className="rounded-2xl border border-border bg-card p-6 md:p-8">
+              <section key={group.groupTitle} className="terminal-panel p-6 md:p-8">
                 <h2 className="font-display text-3xl text-foreground">{group.groupTitle}</h2>
                 <div className="mt-6 space-y-8">
                   {group.sections.map((section) => (
@@ -325,7 +263,7 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
             ))}
           </div>
         ) : (
-          <section className="mt-8 rounded-2xl border border-border bg-card p-6 md:p-8">
+          <section className="terminal-panel mt-8 p-6 md:p-8">
             <h2 className="font-display text-2xl text-foreground">Showcase coming soon</h2>
             <p className="mt-4 text-base leading-relaxed text-muted">
               A detailed technical walkthrough for this project will be added here.

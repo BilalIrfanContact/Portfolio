@@ -15,7 +15,7 @@ export default function Navbar() {
   const navClasses = useMemo(
     () =>
       scrolled
-        ? "border-b border-white/10 bg-[rgba(8,8,16,0.85)] backdrop-blur-xl"
+        ? "border-b border-border bg-[rgba(5,7,5,0.92)] backdrop-blur-sm"
         : "border-b border-transparent bg-transparent",
     [scrolled],
   );
@@ -115,9 +115,9 @@ export default function Navbar() {
             <a
               href={owner.resumePath}
               download
-              className="rounded-full border border-accent px-4 py-2 text-sm font-medium text-accent transition-all duration-200 hover:bg-accent hover:text-background"
+              className="terminal-btn px-4 py-2 text-sm font-medium"
             >
-              Resume
+              cat resume.pdf
             </a>
           </nav>
 
@@ -135,7 +135,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-[rgba(8,8,16,0.96)] pt-24 md:hidden"
+            className="fixed inset-0 z-40 bg-[rgba(5,7,5,0.97)] pt-24 md:hidden"
             initial={{ y: -24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -16, opacity: 0 }}
@@ -146,7 +146,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="border-b border-white/10 pb-4 font-display text-3xl text-foreground"
+                  className="border-b border-border pb-4 font-display text-3xl text-foreground"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -155,10 +155,10 @@ export default function Navbar() {
               <a
                 href={owner.resumePath}
                 download
-                className="mt-2 inline-flex w-fit rounded-full border border-accent px-5 py-2.5 text-accent"
+                className="terminal-btn mt-2 inline-flex w-fit px-5 py-2.5"
                 onClick={() => setMenuOpen(false)}
               >
-                Download Resume
+                cat resume.pdf
               </a>
             </div>
           </motion.div>

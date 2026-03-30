@@ -81,17 +81,6 @@ export const projects: Project[] = [
     github: "https://github.com/BilalIrfanContact/AskMyData",
     demo: "https://github.com/BilalIrfanContact/AskMyData",
   },
-  {
-    id: 3,
-    slug: "podcast-listening-time-prediction",
-    category: "Machine Learning",
-    name: "Podcast Listening Time Prediction",
-    tagline: "Predicting podcast listening time with ML.",
-    description:
-      "A machine learning project focused on estimating listener watch or listening duration for podcast content using structured input features.",
-    tech: ["Python", "Machine Learning", "Pandas", "scikit-learn"],
-    github: "https://github.com/BilalIrfanContact/Podcast-Listening-Time-Prediction",
-  },
 ];
 
 export const skills: SkillGroup[] = [
