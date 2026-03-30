@@ -291,14 +291,16 @@ export default function ProjectShowcasePage({ params }: ProjectShowcasePageProps
             >
               GitHub
             </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-lg border border-white/15 px-4 py-2 text-sm text-foreground/90 transition-colors hover:border-accent/50 hover:text-accent"
-            >
-              Live demo
-            </a>
+            {project.demo ? (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-lg border border-white/15 px-4 py-2 text-sm text-foreground/90 transition-colors hover:border-accent/50 hover:text-accent"
+              >
+                Live demo
+              </a>
+            ) : null}
           </div>
         </div>
 

@@ -7,7 +7,7 @@ export type Project = {
   description: string;
   tech: string[];
   github: string;
-  demo: string;
+  demo?: string;
 };
 
 export type SkillGroup = {
@@ -91,7 +91,6 @@ export const projects: Project[] = [
       "A machine learning project focused on estimating listener watch or listening duration for podcast content using structured input features.",
     tech: ["Python", "Machine Learning", "Pandas", "scikit-learn"],
     github: "https://github.com/BilalIrfanContact/Podcast-Listening-Time-Prediction",
-    demo: "https://github.com/BilalIrfanContact/Podcast-Listening-Time-Prediction",
   },
 ];
 

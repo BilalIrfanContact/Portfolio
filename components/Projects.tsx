@@ -61,16 +61,18 @@ export default function Projects() {
                 >
                   <Github size={18} />
                 </a>
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`${project.name} demo`}
-                  className="rounded-lg border border-white/15 p-2.5 text-foreground/85 transition-colors hover:border-accent/50 hover:text-accent"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <ExternalLink size={18} />
-                </a>
+                {project.demo ? (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.name} demo`}
+                    className="rounded-lg border border-white/15 p-2.5 text-foreground/85 transition-colors hover:border-accent/50 hover:text-accent"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <ExternalLink size={18} />
+                  </a>
+                ) : null}
               </div>
 
               <span className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition-all duration-200 group-hover:border-accent/40 group-hover:shadow-accent" />
